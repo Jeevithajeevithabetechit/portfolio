@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeevitha | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Elegant Modern Palette */
+            --bg-color: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.5);
+            --primary: #fb7185; /* Soft Rose */
+            --secondary: #818cf8; /* Indigo */
+            --accent: #22d3ee; /* Cyan */
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(251, 113, 133, 0.05) 0%, transparent 30%),
+                radial-gradient(circle at 100% 100%, rgba(129, 140, 248, 0.05) 0%, transparent 30%);
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            padding: 20px 5%;
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* --- Hero Section --- */
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero-badge {
+            background: rgba(251, 113, 133, 0.1);
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            border: 1px solid rgba(251, 113, 133, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        header h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 24px;
+            font-weight: 800;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 14px 36px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            filter: brightness(1.1);
+            box-shadow: 0 10px 20px rgba(251, 113, 133, 0.3);
+        }
+
+        /* --- Sections --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 120px 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 48px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        h2::after {
+            content: '';
+            height: 1px;
+            flex-grow: 1;
+            background: var(--border);
+        }
+
+        /* --- Skills --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 16px;
+        }
+
+        .skill-tag {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .skill-tag i {
+            display: block;
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            color: var(--secondary);
+        }
+
+        .skill-tag:hover {
+            border-color: var(--primary);
+            background: rgba(251, 113, 133, 0.05);
+        }
+
+        /* --- Projects --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px;
+            transition: 0.3s;
+        }
+
+        .project-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        /* --- Contact --- */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .info-item {
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .info-item i {
+            width: 40px;
+            height: 40px;
+            background: rgba(129, 140, 248, 0.1);
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 16px;
+            margin-bottom: 16px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: white;
+            outline: none;
+        }
+
+        footer {
+            padding: 60px 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .contact-wrapper { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Jeevitha<span style="color:var(--primary)">.</span></div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <header>
+        <div class="hero-badge">Open for Collaborations</div>
+        <h1>Hi, I'm <span class="gradient-text">Jeevitha</span></h1>
+        <p>Software Engineer | Fullstack Developer | Data Enthusiast</p>
+        <div style="display: flex; gap: 15px;">
+            <a href="#projects" class="btn">View Projects</a>
+            <a href="#contact" class="btn" style="background: transparent; border: 1px solid var(--border);">Hire Me</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <section id="about">
+            <h2>About Me</h2>
+            <div style="max-width: 800px; color: var(--text-muted); font-size: 1.1rem;">
+                <p>I am a detail-oriented <b>Software Engineer</b> dedicated to building functional, user-centric applications. With a focus on full-stack development and data science, I bridge the gap between complex backend logic and intuitive frontend experiences.</p>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Tech Stack</h2>
+            <div class="skills-grid">
+                <div class="skill-tag"><i class="fab fa-python"></i>Python</div>
+                <div class="skill-tag"><i class="fab fa-react"></i>React</div>
+                <div class="skill-tag"><i class="fab fa-node-js"></i>Node.js</div>
+                <div class="skill-tag"><i class="fas fa-database"></i>SQL</div>
+                <div class="skill-tag"><i class="fab fa-js-square"></i>JavaScript</div>
+                <div class="skill-tag"><i class="fab fa-aws"></i>AWS</div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Selected Work</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>E-Commerce Engine</h3>
+                    <p style="color: var(--text-muted); margin: 15px 0;">Scalable marketplace built with MERN stack and secure payment integration.</p>
+                    <a href="#" style="color: var(--primary); text-decoration: none; font-weight: 600;">View Project →</a>
+                </div>
+                <div class="project-card">
+                    <h3>Analytics Dashboard</h3>
+                    <p style="color: var(--text-muted); margin: 15px 0;">Real-time data visualization tool for tracking user engagement metrics.</p>
+                    <a href="#" style="color: var(--primary); text-decoration: none; font-weight: 600;">View Project →</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Get In Touch</h2>
+            <div class="contact-wrapper">
+                <div>
+                    <p style="color: var(--text-muted); margin-bottom: 30px;">I'm currently looking for new opportunities. My inbox is always open.</p>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>jeevijeevi9384@gmail.com</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+91 9384505002</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fab fa-linkedin-in"></i>
+                        <span>linkedin.com/in/jeevitha</span>
+                    </div>
+                </div>
+
+                <form class="contact-form" onsubmit="sendMail(event)">
+                    <input type="text" id="name" placeholder="Your Name" required>
+                    <input type="email" id="email" placeholder="Your Email" required>
+                    <textarea id="msg" rows="4" placeholder="Your Message" required></textarea>
+                    <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Jeevitha. Designed with Precision.</p>
+    </footer>
+
+    <script>
+        // Scroll Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(s => observer.observe(s));
+
+        // Form Logic
+        function sendMail(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            window.location.href = `mailto:akabishektn@gmail.com?subject=Contact from ${name}&body=${document.getElementById('msg').value}`;
+        }
+    </script>
+</body>
+</html>
